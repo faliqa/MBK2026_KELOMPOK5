@@ -1,7 +1,7 @@
 // Titik masuk: boot, input, loop.
-import { T } from './core/config.js';
+import { S, T } from './core/config.js';
 import { PLAYER_STATE, RUNTIME, keys } from './state.js';
-import { MAPS_DATA, initMap, spawnTrash } from './systems/world.js';
+import { MAPS_DATA, getMapSpawn, initMap, spawnTrash } from './systems/world.js';
 import { updatePlayer, updateAutoPick } from './systems/player.js';
 import { updateInteract, interact, travel } from './systems/interaction.js';
 import { doPull } from './systems/gacha.js';
@@ -13,6 +13,16 @@ const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 ctx.imageSmoothingEnabled = false;
 
+function resizeCanvas(map) {
+  const width = map.w * T * S;
+  const height = map.h * T * S;
+  if (canvas.width !== width || canvas.height !== height) {
+    canvas.width = width;
+    canvas.height = height;
+    ctx.imageSmoothingEnabled = false;
+  }
+}
+
 ui.bindUI();
 ui.setPullHandler(doPull);
 ui.setTravelHandler(travel);
@@ -20,8 +30,17 @@ ui.setTravelHandler(travel);
 window.addEventListener('keydown', (e) => {
   const k = e.key.toLowerCase();
   if (['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' '].includes(k)) e.preventDefault();
-  if (k === 'escape') { ui.closeAll(); return; }
+  if (e.repeat && (k === 'e' || k === ' ')) return;
+  if (k === 'escape') {
+    if (ui.isDialogueOpen()) ui.closeDialogue();
+    else ui.closeAll();
+    return;
+  }
   keys.add(k);
+  if ((k === 'e' || k === ' ') && ui.isDialogueOpen()) {
+    ui.advanceDialogue();
+    return;
+  }
   if ((k === 'e' || k === ' ') && !ui.anyPanelOpen() && RUNTIME.transitioning === 0) interact();
 });
 window.addEventListener('keyup', (e) => keys.delete(e.key.toLowerCase()));
@@ -31,6 +50,7 @@ function loop(t) {
   RUNTIME.lastT = t;
 
   const map = MAPS_DATA[PLAYER_STATE.map];
+  resizeCanvas(map);
   initMap(map);
 
   if (!ui.anyPanelOpen() && RUNTIME.transitioning === 0) updatePlayer(dt);
@@ -57,8 +77,11 @@ function boot() {
     if (m.kind === 'zone') for (let i = 0; i < 4; i++) spawnTrash(m);
   }
   PLAYER_STATE.map = 'lobby';
-  PLAYER_STATE.x = 10 * T + T / 2;
-  PLAYER_STATE.y = 9 * T + T / 2;
+  const lobby = MAPS_DATA[PLAYER_STATE.map];
+  const spawn = getMapSpawn(lobby);
+  PLAYER_STATE.x = spawn.x;
+  PLAYER_STATE.y = spawn.y;
+  resizeCanvas(lobby);
   ui.updateHUD();
   ui.toast('Selamat datang, Kang Pisman!');
   requestAnimationFrame(loop);

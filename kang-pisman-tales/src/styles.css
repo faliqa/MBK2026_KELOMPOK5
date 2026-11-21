@@ -3,11 +3,11 @@
   --org:#7bd44f; --ano:#5cb8e6; --b3:#f0c419;
 }
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;overflow:hidden;background:radial-gradient(circle at 50% -10%,#1d2740,#06080d 70%);
+html,body{width:100%;height:100%;margin:0;overflow:hidden;background:radial-gradient(circle at 50% -10%,#1d2740,#06080d 70%);
   color:var(--ink);font-family:ui-monospace,"Courier New",monospace}
-#app{position:relative;width:960px;height:576px;margin:16px auto}
-canvas{display:block;image-rendering:pixelated;border:3px solid #2b3450;border-radius:4px;
-  box-shadow:0 0 0 3px #0a0d14,0 16px 40px rgba(0,0,0,.65)}
+#app{position:relative;width:100vw;height:100vh;height:100dvh;margin:0}
+canvas{display:block;width:100%;height:100%;object-fit:contain;image-rendering:pixelated;border:0;border-radius:0;
+  box-shadow:none}
 
 #hud{position:absolute;inset:0;pointer-events:none;font-size:11px;letter-spacing:.5px}
 #topbar{position:absolute;top:8px;left:8px;right:8px;display:flex;gap:6px;align-items:center;
@@ -79,3 +79,22 @@ canvas{display:block;image-rendering:pixelated;border:3px solid #2b3450;border-r
 #win .st{font-size:12px;color:#8fe4a8}
 #win button{font-family:inherit;font-size:12px;padding:10px 20px;border-radius:3px;cursor:pointer;
   background:#2b1f4d;color:#dcc8ff;border:2px solid #6a52a8}
+
+.dialogue{position:absolute;z-index:5;left:50%;bottom:28px;transform:translateX(-50%);
+  width:min(680px,calc(100% - 32px));display:none;padding:14px 18px;
+  background:rgba(9,13,21,.97);border:3px solid #4a5a86;border-radius:5px;
+  box-shadow:0 0 0 3px #05070c,0 12px 30px rgba(0,0,0,.6);pointer-events:auto}
+.dialogue.show{display:block}
+.dialogue strong{color:#ffe28a;font-size:12px;letter-spacing:1px}
+.dialogue p{margin:8px 0 12px;font-size:12px;line-height:1.6;color:#e9eefc}
+.dialogue-footer{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.dialogue-footer small{color:#8d9ab8;font-size:10px}
+.dialogue-footer button{font-family:inherit;font-size:10px;cursor:pointer;padding:5px 10px;
+  background:#1d2740;color:#cfe0ff;border:2px solid #3b4a70;border-radius:3px}
+
+@media (max-width:760px){
+  #topbar{gap:3px;padding:5px}
+  .res{gap:3px;padding:3px 4px}
+  #hud button{font-size:8px;padding:4px 5px}
+  #mythic-track{padding:3px 4px;font-size:9px}
+}

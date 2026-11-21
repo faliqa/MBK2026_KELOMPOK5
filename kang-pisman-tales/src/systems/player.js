@@ -33,7 +33,10 @@ export function pickupTrash(map, idx) {
 
 export function updatePlayer(dt) {
   const map = MAPS_DATA[PLAYER_STATE.map];
-  const sp = GAME_CONFIG.SPEED * speedMul();
+  const slowZone = (map.slowZones || []).find((zone) =>
+    PLAYER_STATE.x >= zone.x * T && PLAYER_STATE.x < (zone.x + zone.w) * T &&
+    PLAYER_STATE.y >= zone.y * T && PLAYER_STATE.y < (zone.y + zone.h) * T);
+  const sp = GAME_CONFIG.SPEED * speedMul() * (slowZone ? slowZone.speed : 1);
   let vx = 0, vy = 0;
   if (keys.has('a') || keys.has('arrowleft')) vx--;
   if (keys.has('d') || keys.has('arrowright')) vx++;

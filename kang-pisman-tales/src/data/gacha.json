@@ -19,7 +19,7 @@
       { "id":"o7","n":"Sepatu Lari Siliwangi","r":"rare","c":"buff","slot":"speed","d":"+35% kecepatan gerak" },
       { "id":"o8","n":"Sarung Tangan Magnet","r":"rare","c":"buff","slot":"magnet","d":"Radius ambil sampah lebih luas" },
       { "id":"o9","n":"Tas Kompresi Cikapundung","r":"epic","c":"buff","slot":"extra","d":"25% peluang +1 sampah ekstra" },
-      { "id":"o10","n":"Drone Kompos Mini","r":"legend","c":"collector","type":"organik","radius":100 },
+      { "id":"o10","n":"Drone Kompos Mini","r":"legend","c":"collector","type":"organik","radius":100,"gen":true },
       { "id":"o11","n":"Pohon Kalpataru Parahyangan","r":"mythic","c":"collector","type":"organik","radius":130,"gen":true }
     ],
     "anorganik": [
@@ -32,7 +32,7 @@
       { "id":"a7","n":"Sepatu Lari Siliwangi","r":"rare","c":"buff","slot":"speed","d":"+35% kecepatan gerak" },
       { "id":"a8","n":"Sarung Tangan Magnet","r":"rare","c":"buff","slot":"magnet","d":"Radius ambil sampah lebih luas" },
       { "id":"a9","n":"Tas Kompresi Cikapundung","r":"epic","c":"buff","slot":"extra","d":"25% peluang +1 sampah ekstra" },
-      { "id":"a10","n":"Bot Pemungut Plastik","r":"legend","c":"collector","type":"anorganik","radius":100 },
+      { "id":"a10","n":"Bot Pemungut Plastik","r":"legend","c":"collector","type":"anorganik","radius":100,"gen":true },
       { "id":"a11","n":"Monumen Gedung Sate Emas","r":"mythic","c":"collector","type":"anorganik","radius":130,"gen":true }
     ],
     "b3": [
@@ -45,7 +45,7 @@
       { "id":"b7","n":"Sepatu Lari Siliwangi","r":"rare","c":"buff","slot":"speed","d":"+35% kecepatan gerak" },
       { "id":"b8","n":"Sarung Tangan Magnet","r":"rare","c":"buff","slot":"magnet","d":"Radius ambil sampah lebih luas" },
       { "id":"b9","n":"Tas Kompresi Cikapundung","r":"epic","c":"buff","slot":"extra","d":"25% peluang +1 sampah ekstra" },
-      { "id":"b10","n":"Sensor Penetral B3","r":"legend","c":"collector","type":"b3","radius":100 },
+      { "id":"b10","n":"Sensor Penetral B3","r":"legend","c":"collector","type":"b3","radius":100,"gen":true },
       { "id":"b11","n":"Mecha-Guardian Cikapundung","r":"mythic","c":"collector","type":"b3","radius":130,"gen":true }
     ]
   }

@@ -2,8 +2,8 @@
 export const GAME_CONFIG = {
   TILE: 16,
   SCALE: 3,
-  COLS: 20,
-  ROWS: 12,
+  COLS: 32,
+  ROWS: 20,
   SPEED: 96,
   PICK_RANGE: 36,
   MAGNET_BASE: 24,

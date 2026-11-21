@@ -28,6 +28,11 @@ export function initMap(map) {
   if (!map._spawnT) map._spawnT = 0;
 }
 
+export function getMapSpawn(map) {
+  const spawn = map.spawn || { x: Math.floor(map.w / 2), y: map.h - 3 };
+  return { x: spawn.x * T + T / 2, y: spawn.y * T + T / 2 };
+}
+
 export function spawnTrash(map) {
   if (map.kind !== 'zone') return;
   if (map.trash.length >= GAME_CONFIG.TRASH_MAX) return;

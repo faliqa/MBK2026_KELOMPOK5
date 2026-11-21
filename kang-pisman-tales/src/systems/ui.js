@@ -6,13 +6,38 @@ import { RARITY, CATEGORIES, findItem } from '../data/items.js';
 const $ = (id) => document.getElementById(id);
 
 let pullHandler = null;
+let activeDialogue = null;
 export function setPullHandler(fn) { pullHandler = fn; }
 
 export function anyPanelOpen() {
-  return [...document.querySelectorAll('.panel')].some((p) => p.classList.contains('show'));
+  return activeDialogue !== null ||
+    [...document.querySelectorAll('.panel')].some((p) => p.classList.contains('show'));
 }
 export function closeAll() {
   document.querySelectorAll('.panel').forEach((p) => p.classList.remove('show'));
+  closeDialogue();
+}
+export function isDialogueOpen() {
+  return activeDialogue !== null;
+}
+export function showDialogue(name, lines) {
+  activeDialogue = { name, lines, index: 0 };
+  $('dialogue-name').textContent = name;
+  $('dialogue-text').textContent = lines[0];
+  $('dialogue').classList.add('show');
+}
+export function advanceDialogue() {
+  if (!activeDialogue) return;
+  activeDialogue.index++;
+  if (activeDialogue.index >= activeDialogue.lines.length) {
+    closeDialogue();
+    return;
+  }
+  $('dialogue-text').textContent = activeDialogue.lines[activeDialogue.index];
+}
+export function closeDialogue() {
+  activeDialogue = null;
+  $('dialogue').classList.remove('show');
 }
 export function setPrompt(text) {
   const el = $('prompt');
@@ -116,6 +141,7 @@ export function bindUI() {
   $('btn-inv').onclick = () => { renderInv(); $('panel-inv').classList.add('show'); };
   $('btn-map').onclick = () => { renderMapGrid(); $('panel-map').classList.add('show'); };
   document.querySelectorAll('[data-close]').forEach((b) => { b.onclick = closeAll; });
+  $('dialogue-next').onclick = advanceDialogue;
   $('pull1').onclick = () => pullHandler && pullHandler(1);
   $('pull10').onclick = () => pullHandler && pullHandler(10);
   $('btn-roam').onclick = () => {

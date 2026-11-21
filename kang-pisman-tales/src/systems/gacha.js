@@ -4,6 +4,7 @@ import { PLAYER_STATE } from '../state.js';
 import { RARITY, GACHA_POOL } from '../data/items.js';
 import { pick } from '../core/util.js';
 import { gain } from './economy.js';
+import { MAPS_DATA } from './world.js';
 import { sfx } from '../core/audio.js';
 import * as ui from './ui.js';
 
@@ -40,7 +41,7 @@ export function applyItem(item) {
 
 export function openGacha(theme) {
   PLAYER_STATE.gachaTheme = theme;
-  document.getElementById('gacha-title').textContent = MACHINE_MAP[theme].toUpperCase();
+  document.getElementById('gacha-title').textContent = MAPS_DATA[MACHINE_MAP[theme]].name.toUpperCase();
   refreshGacha();
   document.getElementById('panel-gacha').classList.add('show');
 }

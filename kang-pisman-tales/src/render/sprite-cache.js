@@ -9,6 +9,16 @@ export function padRows(rows) {
   return rows.map((r) => r.padEnd(w, '.'));
 }
 
+function shadeColor(color, amount) {
+  const value = Number.parseInt(color.slice(1), 16);
+  const channels = [
+    (value >> 16) & 255,
+    (value >> 8) & 255,
+    value & 255
+  ].map((channel) => Math.max(0, Math.min(255, Math.round(channel * amount))));
+  return `rgb(${channels[0]},${channels[1]},${channels[2]})`;
+}
+
 export function buildSpriteCanvas(rows, colors, flip) {
   const g = padRows(rows);
   const w = g[0].length, h = g.length;
@@ -23,7 +33,9 @@ export function buildSpriteCanvas(rows, colors, flip) {
       if (ch === '.') continue;
       const col = colors[ch];
       if (!col) continue;
-      x.fillStyle = col;
+      const verticalShade = 1.16 - (j / Math.max(1, h - 1)) * 0.30;
+      const pixelTexture = (i * 13 + j * 7) % 11 === 0 ? 0.05 : 0;
+      x.fillStyle = shadeColor(col, verticalShade + pixelTexture);
       x.fillRect(i, j, 1, 1);
     }
   }
@@ -43,15 +55,15 @@ export function getSprite(name, flip) {
 export function drawSprite(ctx, name, px, py, flip) {
   const cv = getSprite(name, flip);
   if (!cv) return;
-  ctx.drawImage(cv, Math.round(px), Math.round(py), cv.width * S, cv.height * S);
+  ctx.drawImage(cv, Math.round(px * S), Math.round(py * S), cv.width * S, cv.height * S);
 }
 
 // Jangkar bawah-tengah pada tile.
 export function drawDecorSprite(ctx, name, tx, ty) {
   const cv = getSprite(name);
   if (!cv) return;
-  const px = tx * T + T / 2 - (cv.width * S) / 2;
-  const py = ty * T + T - cv.height * S;
+  const px = tx * T * S + T * S / 2 - (cv.width * S) / 2;
+  const py = ty * T * S + T * S - cv.height * S;
   ctx.drawImage(cv, Math.round(px), Math.round(py), cv.width * S, cv.height * S);
 }
 
