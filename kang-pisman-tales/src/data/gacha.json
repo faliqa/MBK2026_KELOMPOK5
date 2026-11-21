@@ -1,0 +1,52 @@
+{
+  "rarity": {
+    "common":   { "name": "COMMON",   "w": 45,  "color": "#9aa6bd" },
+    "uncommon": { "name": "UNCOMMON", "w": 28,  "color": "#5cd98a" },
+    "rare":     { "name": "RARE",     "w": 15,  "color": "#4fa8ff" },
+    "epic":     { "name": "EPIC",     "w": 7,   "color": "#b06bff" },
+    "legend":   { "name": "LEGEND",   "w": 3.5, "color": "#ffb340" },
+    "mythic":   { "name": "MYTHIC",   "w": 1.5, "color": "#ff4d6d" }
+  },
+  "categories": { "deco": "Pajangan", "buff": "Buff Progres", "collector": "Pengumpul Otomatis" },
+  "pool": {
+    "organik": [
+      { "id":"o1","n":"Pot Bunga Anggrek Bandung","r":"common","c":"deco","s":"pot" },
+      { "id":"o2","n":"Bangku Taman Braga","r":"common","c":"deco","s":"bench" },
+      { "id":"o3","n":"Tempat Sampah Pilah Estetik","r":"common","c":"deco","s":"bin" },
+      { "id":"o4","n":"Semak Hias Parahyangan","r":"common","c":"deco","s":"bush" },
+      { "id":"o5","n":"Lampu Taman Antik","r":"uncommon","c":"deco","s":"lamp" },
+      { "id":"o6","n":"Pohon Rindang Cibeunying","r":"uncommon","c":"deco","s":"tree" },
+      { "id":"o7","n":"Sepatu Lari Siliwangi","r":"rare","c":"buff","slot":"speed","d":"+35% kecepatan gerak" },
+      { "id":"o8","n":"Sarung Tangan Magnet","r":"rare","c":"buff","slot":"magnet","d":"Radius ambil sampah lebih luas" },
+      { "id":"o9","n":"Tas Kompresi Cikapundung","r":"epic","c":"buff","slot":"extra","d":"25% peluang +1 sampah ekstra" },
+      { "id":"o10","n":"Drone Kompos Mini","r":"legend","c":"collector","type":"organik","radius":100 },
+      { "id":"o11","n":"Pohon Kalpataru Parahyangan","r":"mythic","c":"collector","type":"organik","radius":130,"gen":true }
+    ],
+    "anorganik": [
+      { "id":"a1","n":"Bangku Taman Braga","r":"common","c":"deco","s":"bench" },
+      { "id":"a2","n":"Tempat Sampah Pilah Estetik","r":"common","c":"deco","s":"bin" },
+      { "id":"a3","n":"Pot Bunga Anggrek Bandung","r":"common","c":"deco","s":"pot" },
+      { "id":"a4","n":"Pipa Dekorasi Kota","r":"common","c":"deco","s":"pipe" },
+      { "id":"a5","n":"Lampu Jalan Antik","r":"uncommon","c":"deco","s":"lamp" },
+      { "id":"a6","n":"Batu Hias Taman","r":"uncommon","c":"deco","s":"rock" },
+      { "id":"a7","n":"Sepatu Lari Siliwangi","r":"rare","c":"buff","slot":"speed","d":"+35% kecepatan gerak" },
+      { "id":"a8","n":"Sarung Tangan Magnet","r":"rare","c":"buff","slot":"magnet","d":"Radius ambil sampah lebih luas" },
+      { "id":"a9","n":"Tas Kompresi Cikapundung","r":"epic","c":"buff","slot":"extra","d":"25% peluang +1 sampah ekstra" },
+      { "id":"a10","n":"Bot Pemungut Plastik","r":"legend","c":"collector","type":"anorganik","radius":100 },
+      { "id":"a11","n":"Monumen Gedung Sate Emas","r":"mythic","c":"collector","type":"anorganik","radius":130,"gen":true }
+    ],
+    "b3": [
+      { "id":"b1","n":"Tempat Sampah Pilah Estetik","r":"common","c":"deco","s":"bin" },
+      { "id":"b2","n":"Pipa Dekorasi Kota","r":"common","c":"deco","s":"pipe" },
+      { "id":"b3","n":"Tangki Air Industri","r":"common","c":"deco","s":"tank" },
+      { "id":"b4","n":"Lampu Jalan Antik","r":"common","c":"deco","s":"lamp" },
+      { "id":"b5","n":"Batu Hias Taman","r":"uncommon","c":"deco","s":"rock" },
+      { "id":"b6","n":"Pohon Rindang Cibeunying","r":"uncommon","c":"deco","s":"tree" },
+      { "id":"b7","n":"Sepatu Lari Siliwangi","r":"rare","c":"buff","slot":"speed","d":"+35% kecepatan gerak" },
+      { "id":"b8","n":"Sarung Tangan Magnet","r":"rare","c":"buff","slot":"magnet","d":"Radius ambil sampah lebih luas" },
+      { "id":"b9","n":"Tas Kompresi Cikapundung","r":"epic","c":"buff","slot":"extra","d":"25% peluang +1 sampah ekstra" },
+      { "id":"b10","n":"Sensor Penetral B3","r":"legend","c":"collector","type":"b3","radius":100 },
+      { "id":"b11","n":"Mecha-Guardian Cikapundung","r":"mythic","c":"collector","type":"b3","radius":130,"gen":true }
+    ]
+  }
+}

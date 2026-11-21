@@ -1,0 +1,105 @@
+{
+  "lobby": {
+    "id": "lobby", "name": "Plaza Gedung Sate", "kind": "lobby", "floor": "stone", "w": 20, "h": 12,
+    "walls": [[0,0,20,1],[0,11,20,1],[0,0,1,12],[19,0,1,12],[3,4,1,1],[16,4,1,1]],
+    "portals": [
+      {"x":4,"y":1,"to":"fac_organik","label":"Pabrik Organik"},
+      {"x":10,"y":1,"to":"fac_anorganik","label":"Pabrik Anorganik"},
+      {"x":16,"y":1,"to":"fac_b3","label":"Pabrik B3"},
+      {"x":2,"y":10,"to":"z_peternakan","label":"Peternakan Lembang"},
+      {"x":4,"y":10,"to":"z_warung","label":"Warung Sunda"},
+      {"x":6,"y":10,"to":"z_taman","label":"Taman Lansia"},
+      {"x":8,"y":10,"to":"z_hutan","label":"Tahura Djuanda"},
+      {"x":10,"y":10,"to":"z_braga","label":"Jalan Braga"},
+      {"x":12,"y":10,"to":"z_sekolah","label":"Sekolah"},
+      {"x":14,"y":10,"to":"z_kantor","label":"Perkantoran"},
+      {"x":16,"y":10,"to":"z_rs","label":"Rumah Sakit"},
+      {"x":18,"y":10,"to":"z_industri","label":"Kawasan Industri"}
+    ],
+    "decor": [
+      {"s":"gedung_sate","tx":10,"ty":3},{"s":"tree","tx":1,"ty":5},{"s":"tree","tx":18,"ty":5},
+      {"s":"bush","tx":2,"ty":6},{"s":"bush","tx":17,"ty":6},{"s":"bench","tx":6,"ty":7},
+      {"s":"bench","tx":13,"ty":7},{"s":"lamp","tx":4,"ty":6},{"s":"lamp","tx":15,"ty":6}
+    ],
+    "showcase": [
+      {"tx":2,"ty":8},{"tx":4,"ty":8},{"tx":6,"ty":8},{"tx":8,"ty":8},{"tx":10,"ty":8},
+      {"tx":12,"ty":8},{"tx":14,"ty":8},{"tx":16,"ty":8},{"tx":3,"ty":7},{"tx":9,"ty":7},
+      {"tx":11,"ty":7},{"tx":17,"ty":7}
+    ]
+  },
+  "fac_organik": {
+    "id":"fac_organik","name":"Bio-Compost Lab","kind":"factory","theme":"organik","floor":"ceramic","w":20,"h":12,
+    "walls":[[0,0,20,1],[0,11,20,1],[0,0,1,12],[19,0,1,12],[9,3,2,2],[3,2,1,1],[16,2,1,1]],
+    "portals":[{"x":10,"y":10,"to":"lobby","label":"Kembali ke Plaza"}],
+    "machine":{"tx":9,"ty":3,"theme":"organik"},
+    "decor":[{"s":"pot","tx":4,"ty":3},{"s":"pot","tx":15,"ty":3},{"s":"bin","tx":2,"ty":9},{"s":"bush","tx":17,"ty":9}]
+  },
+  "fac_anorganik": {
+    "id":"fac_anorganik","name":"Creative Recycle Workshop","kind":"factory","theme":"anorganik","floor":"factory","w":20,"h":12,
+    "walls":[[0,0,20,1],[0,11,20,1],[0,0,1,12],[19,0,1,12],[9,3,2,2],[3,2,1,1],[16,2,1,1]],
+    "portals":[{"x":10,"y":10,"to":"lobby","label":"Kembali ke Plaza"}],
+    "machine":{"tx":9,"ty":3,"theme":"anorganik"},
+    "decor":[{"s":"pipe","tx":4,"ty":3},{"s":"pipe","tx":15,"ty":3},{"s":"bin","tx":2,"ty":9},{"s":"bench","tx":17,"ty":9}]
+  },
+  "fac_b3": {
+    "id":"fac_b3","name":"High-Tech Hazmat Reactor","kind":"factory","theme":"b3","floor":"factory","w":20,"h":12,
+    "walls":[[0,0,20,1],[0,11,20,1],[0,0,1,12],[19,0,1,12],[9,3,2,2],[3,2,1,1],[16,2,1,1]],
+    "portals":[{"x":10,"y":10,"to":"lobby","label":"Kembali ke Plaza"}],
+    "machine":{"tx":9,"ty":3,"theme":"b3"},
+    "decor":[{"s":"tank","tx":4,"ty":3},{"s":"tank","tx":15,"ty":3},{"s":"pipe","tx":2,"ty":9},{"s":"pipe","tx":17,"ty":9}]
+  },
+  "z_peternakan": {
+    "id":"z_peternakan","name":"Peternakan Lembang","kind":"zone","type":"organik","floor":"dirt","w":20,"h":12,
+    "walls":[[0,0,20,1],[0,11,20,1],[0,0,1,12],[19,0,1,12],[4,4,3,1],[13,4,3,1],[9,7,2,1]],
+    "portals":[{"x":10,"y":10,"to":"lobby","label":"Kembali ke Plaza"}],
+    "decor":[{"s":"bush","tx":2,"ty":3},{"s":"bush","tx":17,"ty":3},{"s":"rock","tx":7,"ty":8},{"s":"rock","tx":12,"ty":8},{"s":"tree","tx":1,"ty":6}]
+  },
+  "z_warung": {
+    "id":"z_warung","name":"Warung Sunda","kind":"zone","type":"organik","floor":"ceramic","w":20,"h":12,
+    "walls":[[0,0,20,1],[0,11,20,1],[0,0,1,12],[19,0,1,12],[5,4,4,1],[12,5,3,1]],
+    "portals":[{"x":10,"y":10,"to":"lobby","label":"Kembali ke Plaza"}],
+    "decor":[{"s":"bench","tx":3,"ty":8},{"s":"bench","tx":16,"ty":8},{"s":"pot","tx":2,"ty":3},{"s":"pot","tx":17,"ty":3}]
+  },
+  "z_taman": {
+    "id":"z_taman","name":"Taman Lansia","kind":"zone","type":"organik","floor":"grass","w":20,"h":12,
+    "walls":[[0,0,20,1],[0,11,20,1],[0,0,1,12],[19,0,1,12],[6,5,2,1],[12,5,2,1]],
+    "portals":[{"x":10,"y":10,"to":"lobby","label":"Kembali ke Plaza"}],
+    "decor":[{"s":"tree","tx":3,"ty":3},{"s":"tree","tx":16,"ty":3},{"s":"bench","tx":9,"ty":7},{"s":"lamp","tx":2,"ty":8},{"s":"lamp","tx":17,"ty":8}]
+  },
+  "z_hutan": {
+    "id":"z_hutan","name":"Tahura Djuanda","kind":"zone","type":"organik","floor":"grass","w":20,"h":12,
+    "walls":[[0,0,20,1],[0,11,20,1],[0,0,1,12],[19,0,1,12],[3,3,2,2],[15,3,2,2],[8,6,4,1]],
+    "portals":[{"x":10,"y":10,"to":"lobby","label":"Kembali ke Plaza"}],
+    "decor":[{"s":"tree","tx":6,"ty":2},{"s":"tree","tx":13,"ty":2},{"s":"bush","tx":2,"ty":7},{"s":"bush","tx":17,"ty":7},{"s":"rock","tx":9,"ty":9}]
+  },
+  "z_braga": {
+    "id":"z_braga","name":"Jalan Braga & Alun-Alun","kind":"zone","type":"anorganik","floor":"stone","w":20,"h":12,
+    "walls":[[0,0,20,1],[0,11,20,1],[0,0,1,12],[19,0,1,12],[2,3,3,1],[15,3,3,1],[8,7,4,1]],
+    "portals":[{"x":10,"y":10,"to":"lobby","label":"Kembali ke Plaza"}],
+    "decor":[{"s":"lamp","tx":3,"ty":6},{"s":"lamp","tx":16,"ty":6},{"s":"bench","tx":6,"ty":4},{"s":"bench","tx":13,"ty":4}]
+  },
+  "z_sekolah": {
+    "id":"z_sekolah","name":"Sekolah","kind":"zone","type":"anorganik","floor":"ceramic","w":20,"h":12,
+    "walls":[[0,0,20,1],[0,11,20,1],[0,0,1,12],[19,0,1,12],[5,3,3,1],[12,3,3,1],[9,7,2,1]],
+    "portals":[{"x":10,"y":10,"to":"lobby","label":"Kembali ke Plaza"}],
+    "decor":[{"s":"bench","tx":4,"ty":8},{"s":"bench","tx":15,"ty":8},{"s":"bin","tx":2,"ty":3},{"s":"bin","tx":17,"ty":3}]
+  },
+  "z_kantor": {
+    "id":"z_kantor","name":"Perkantoran","kind":"zone","type":"anorganik","floor":"factory","w":20,"h":12,
+    "walls":[[0,0,20,1],[0,11,20,1],[0,0,1,12],[19,0,1,12],[3,4,2,2],[15,4,2,2],[9,7,2,1]],
+    "portals":[{"x":10,"y":10,"to":"lobby","label":"Kembali ke Plaza"}],
+    "decor":[{"s":"pot","tx":6,"ty":3},{"s":"pot","tx":13,"ty":3},{"s":"bin","tx":2,"ty":9},{"s":"bin","tx":17,"ty":9}]
+  },
+  "z_rs": {
+    "id":"z_rs","name":"Rumah Sakit","kind":"zone","type":"b3","floor":"ceramic","w":20,"h":12,
+    "walls":[[0,0,20,1],[0,11,20,1],[0,0,1,12],[19,0,1,12],[4,3,2,2],[14,3,2,2],[9,7,2,1]],
+    "portals":[{"x":10,"y":10,"to":"lobby","label":"Kembali ke Plaza"}],
+    "decor":[{"s":"bin","tx":6,"ty":5},{"s":"bin","tx":13,"ty":5},{"s":"lamp","tx":2,"ty":9},{"s":"lamp","tx":17,"ty":9}]
+  },
+  "z_industri": {
+    "id":"z_industri","name":"Kawasan Pabrik Industri","kind":"zone","type":"b3","floor":"factory","w":20,"h":12,
+    "walls":[[0,0,20,1],[0,11,20,1],[0,0,1,12],[19,0,1,12],[3,3,2,2],[15,3,2,2],[7,6,2,1],[12,6,2,1]],
+    "portals":[{"x":10,"y":10,"to":"lobby","label":"Kembali ke Plaza"}],
+    "decor":[{"s":"pipe","tx":6,"ty":3},{"s":"pipe","tx":13,"ty":3},{"s":"tank","tx":2,"ty":8},{"s":"tank","tx":17,"ty":8}]
+  }
+}

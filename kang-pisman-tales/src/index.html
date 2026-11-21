@@ -1,0 +1,57 @@
+cd "D:\Project Game MBK\MBK2026_KELOMPOK5\kang-pisman-tales"cd "D:\Project Game MBK\MBK2026_KELOMPOK5\kang-pisman-tales"<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Kang Pisman Tales: Penjaga Bumi Parahyangan</title>
+/*STYLE*/
+</head>
+<body>
+<div id="app">
+  <canvas id="game" width="960" height="576"></canvas>
+
+  <div id="hud">
+    <div id="topbar">
+      <div class="res"><span class="dot org"></span>Organik <b id="c-organik">0</b></div>
+      <div class="res"><span class="dot ano"></span>Anorganik <b id="c-anorganik">0</b></div>
+      <div class="res"><span class="dot b3"></span>B3 <b id="c-b3">0</b></div>
+      <div class="spacer"></div>
+      <div id="mythic-track">MYTHIC <b id="c-mythic">0/3</b></div>
+      <button id="btn-inv">BUKU KOLEKSI</button>
+      <button id="btn-map">PETA</button>
+    </div>
+    <div id="toast"></div>
+    <div id="prompt"></div>
+  </div>
+
+  <div class="panel" id="panel-inv">
+    <div class="ph"><h2>BUKU KOLEKSI &amp; INVENTORY</h2><button class="x" data-close>X</button></div>
+    <div class="pb" id="inv-body"></div>
+  </div>
+
+  <div class="panel" id="panel-map">
+    <div class="ph"><h2>PETA CEPAT BANDUNG</h2><button class="x" data-close>X</button></div>
+    <div class="pb"><div class="grid" id="map-grid"></div></div>
+  </div>
+
+  <div class="panel" id="panel-gacha">
+    <div class="ph"><h2 id="gacha-title">MESIN GACHA</h2><button class="x" data-close>X</button></div>
+    <div class="pb">
+      <div id="gacha-info"></div>
+      <div class="row">
+        <button id="pull1">TARIK 1x - 3 sampah</button>
+        <button id="pull10">TARIK 10x - 30 sampah</button>
+      </div>
+      <div id="gacha-result"></div>
+    </div>
+  </div>
+
+  <div id="win">
+    <h1>KOTA BANDUNG TERSELAMATKAN!</h1>
+    <p>Ketiga Mythic Penjaga Parahyangan telah bangkit. Bandung bebas dari tumpukan sampah!</p>
+    <div class="st" id="win-stats"></div>
+    <button id="btn-roam">LANJUT BERMAIN (FREE ROAM)</button>
+  </div>
+</div>
+/*SCRIPT*/
+</body>
+</html>
