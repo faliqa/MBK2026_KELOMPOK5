@@ -14,8 +14,20 @@
       <div class="res"><span class="dot org"></span>Organik <b id="c-organik">0</b></div>
       <div class="res"><span class="dot ano"></span>Anorganik <b id="c-anorganik">0</b></div>
       <div class="res"><span class="dot b3"></span>B3 <b id="c-b3">0</b></div>
+      <div id="level-widget" aria-label="Level dan pengalaman">
+        <strong>LV <b id="level-value">1</b></strong>
+        <div class="level-xp">
+          <div class="level-track"><i id="level-fill"></i></div>
+          <small><span id="level-xp">0</span>/<span id="level-next">100</span> XP</small>
+        </div>
+      </div>
+      <div id="combo-meter" aria-live="polite">
+        <span>COMBO</span><b id="combo-value">x0</b>
+        <div class="combo-track"><i id="combo-fill"></i></div>
+      </div>
       <div class="spacer"></div>
       <div id="mythic-track">MYTHIC <b id="c-mythic">0/3</b></div>
+      <button id="btn-skills">SKILL</button>
       <button id="btn-inv">BUKU KOLEKSI</button>
       <button id="btn-map">PETA</button>
     </div>
@@ -26,6 +38,14 @@
   <div class="panel" id="panel-inv">
     <div class="ph"><h2>BUKU KOLEKSI &amp; INVENTORY</h2><button class="x" data-close>X</button></div>
     <div class="pb" id="inv-body"></div>
+  </div>
+
+  <div class="panel" id="panel-skills">
+    <div class="ph"><h2>LEVEL &amp; SKILL</h2><button class="x" data-close>X</button></div>
+    <div class="pb">
+      <div class="skill-summary" id="skill-summary"></div>
+      <div id="skill-list"></div>
+    </div>
   </div>
 
   <div class="panel" id="panel-map">

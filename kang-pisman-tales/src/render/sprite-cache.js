@@ -55,7 +55,17 @@ export function getSprite(name, flip) {
 export function drawSprite(ctx, name, px, py, flip) {
   const cv = getSprite(name, flip);
   if (!cv) return;
-  ctx.drawImage(cv, Math.round(px * S), Math.round(py * S), cv.width * S, cv.height * S);
+  drawImageWithShadow(ctx, cv, Math.round(px * S), Math.round(py * S), cv.width * S, cv.height * S);
+}
+
+export function drawImageWithShadow(ctx, image, x, y, width, height, strength = 0.32) {
+  ctx.save();
+  ctx.shadowColor = `rgba(5, 9, 12, ${strength})`;
+  ctx.shadowBlur = 2 * S;
+  ctx.shadowOffsetX = 2 * S;
+  ctx.shadowOffsetY = 3 * S;
+  ctx.drawImage(image, x, y, width, height);
+  ctx.restore();
 }
 
 // Jangkar bawah-tengah pada tile.
@@ -64,7 +74,12 @@ export function drawDecorSprite(ctx, name, tx, ty) {
   if (!cv) return;
   const px = tx * T * S + T * S / 2 - (cv.width * S) / 2;
   const py = ty * T * S + T * S - cv.height * S;
-  ctx.drawImage(cv, Math.round(px), Math.round(py), cv.width * S, cv.height * S);
+  if (name === 'portal') {
+    ctx.drawImage(cv, Math.round(px), Math.round(py), cv.width * S, cv.height * S);
+    return;
+  }
+  drawImageWithShadow(ctx, cv, Math.round(px), Math.round(py), cv.width * S, cv.height * S,
+    name === 'tree' || name === 'pine' || name === 'forest_tree' || name === 'gedung_sate' ? 0.42 : 0.28);
 }
 
 // Panggil setelah menamai ulang sprite.

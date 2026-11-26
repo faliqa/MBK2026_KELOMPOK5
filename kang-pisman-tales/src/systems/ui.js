@@ -2,11 +2,15 @@
 import { PLAYER_STATE } from '../state.js';
 import { MAPS_DATA } from './world.js';
 import { RARITY, CATEGORIES, findItem } from '../data/items.js';
+import { SKILLS, xpToNextLevel } from '../data/skills.js';
+import { upgradeSkill } from './progression.js';
 
 const $ = (id) => document.getElementById(id);
 
 let pullHandler = null;
 let activeDialogue = null;
+let lastComboCount = -1;
+let lastComboPercent = -1;
 export function setPullHandler(fn) { pullHandler = fn; }
 
 export function anyPanelOpen() {
@@ -60,7 +64,39 @@ export function updateHUD() {
   $('c-b3').textContent = PLAYER_STATE.stock.b3;
   const m = Object.values(PLAYER_STATE.mythics).filter(Boolean).length;
   $('c-mythic').textContent = m + '/3';
+  updateLevelHUD();
   if ($('panel-inv').classList.contains('show')) renderInv();
+  if ($('panel-skills').classList.contains('show')) renderSkills();
+}
+
+export function updateLevelHUD() {
+  const { level, xp } = PLAYER_STATE.progression;
+  const next = xpToNextLevel(level);
+  $('level-value').textContent = level;
+  $('level-xp').textContent = xp;
+  $('level-next').textContent = next;
+  $('level-fill').style.width = Math.min(100, (xp / next) * 100) + '%';
+}
+
+export function updateComboHUD(count, progress) {
+  const meter = $('combo-meter');
+  if (!meter) return;
+  const active = count > 0;
+  meter.classList.toggle('active', active);
+  if (!active) {
+    lastComboCount = 0;
+    lastComboPercent = 0;
+    return;
+  }
+  const percent = Math.max(0, Math.min(100, Math.round(progress * 100)));
+  if (lastComboCount !== count) {
+    $('combo-value').textContent = 'x' + count;
+    lastComboCount = count;
+  }
+  if (lastComboPercent !== percent) {
+    $('combo-fill').style.width = percent + '%';
+    lastComboPercent = percent;
+  }
 }
 
 export function renderInv() {
@@ -95,6 +131,37 @@ export function renderInv() {
       const s = btn.dataset.eq, id = btn.dataset.id;
       PLAYER_STATE.equipped[s] = PLAYER_STATE.equipped[s] === id ? null : id;
       renderInv();
+      updateHUD();
+    };
+  });
+}
+
+export function renderSkills() {
+  const progression = PLAYER_STATE.progression;
+  $('skill-summary').innerHTML =
+    `<strong>Level ${progression.level}</strong><span>${progression.xp}/${xpToNextLevel(progression.level)} XP</span>` +
+    `<b>${progression.skillPoints} poin skill tersedia</b>`;
+  $('skill-list').innerHTML = Object.entries(SKILLS).map(([id, skill]) => {
+    const rank = progression.skills[id];
+    const maxed = rank >= skill.maxRank;
+    return `<article class="skill-card">
+      <div class="skill-copy">
+        <h3>${skill.name}</h3>
+        <p>${skill.description}</p>
+        <small>RANK ${rank}/${skill.maxRank}</small>
+        <div class="skill-ranks">${Array.from({ length: skill.maxRank }, (_, i) =>
+          `<i class="${i < rank ? 'filled' : ''}"></i>`).join('')}</div>
+      </div>
+      <button class="skill-up" data-skill="${id}" ${maxed || progression.skillPoints < 1 ? 'disabled' : ''}>
+        ${maxed ? 'MAKS' : 'TINGKATKAN'}
+      </button>
+    </article>`;
+  }).join('');
+  $('skill-list').querySelectorAll('[data-skill]').forEach((button) => {
+    button.onclick = () => {
+      if (!upgradeSkill(button.dataset.skill)) return;
+      const skill = SKILLS[button.dataset.skill];
+      toast(`${skill.name} meningkat ke rank ${PLAYER_STATE.progression.skills[button.dataset.skill]}.`);
       updateHUD();
     };
   });
@@ -139,6 +206,7 @@ export function showWin(stats) {
 
 export function bindUI() {
   $('btn-inv').onclick = () => { renderInv(); $('panel-inv').classList.add('show'); };
+  $('btn-skills').onclick = () => { renderSkills(); $('panel-skills').classList.add('show'); };
   $('btn-map').onclick = () => { renderMapGrid(); $('panel-map').classList.add('show'); };
   document.querySelectorAll('[data-close]').forEach((b) => { b.onclick = closeAll; });
   $('dialogue-next').onclick = advanceDialogue;

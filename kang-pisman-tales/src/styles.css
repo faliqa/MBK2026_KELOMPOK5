@@ -11,18 +11,44 @@ canvas{display:block;width:100%;height:100%;object-fit:contain;image-rendering:p
 
 #hud{position:absolute;inset:0;pointer-events:none;font-size:11px;letter-spacing:.5px}
 #topbar{position:absolute;top:8px;left:8px;right:8px;display:flex;gap:6px;align-items:center;
-  background:linear-gradient(180deg,rgba(10,14,22,.94),rgba(10,14,22,.72));
-  border:2px solid var(--line);border-radius:4px;padding:6px 8px;pointer-events:auto}
-.res{display:flex;align-items:center;gap:5px;padding:3px 7px;border:1px solid #2c3450;border-radius:3px;background:#111725}
+  background:linear-gradient(180deg,rgba(24,32,49,.97),rgba(10,14,22,.88));
+  border:2px solid #52617e;border-radius:4px;padding:6px 8px;pointer-events:auto;
+  box-shadow:0 3px 0 rgba(3,5,9,.82),0 8px 22px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.08)}
+.res{display:flex;align-items:center;gap:5px;padding:3px 7px;border:1px solid #3b4762;border-radius:3px;
+  background:linear-gradient(180deg,#1a2333,#0d1320);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 2px 0 #070a10}
 .res b{font-size:13px}
+#level-widget{display:flex;align-items:center;gap:7px;min-width:118px;padding:3px 7px;
+  border:1px solid #53648a;border-radius:3px;color:#d4e4ff;
+  background:linear-gradient(180deg,#202c45,#111a2b);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 2px 0 #070a10}
+#level-widget strong{font-size:10px;white-space:nowrap;color:#ffe28a}
+#level-widget strong b{font-size:14px}
+.level-xp{display:flex;flex:1;min-width:50px;flex-direction:column;gap:2px}
+.level-xp small{font-size:8px;color:#9eacc7;text-align:right}
+.level-track{height:5px;overflow:hidden;border:1px solid #394a6c;border-radius:2px;background:#0a101b}
+.level-track i{display:block;width:0;height:100%;background:linear-gradient(90deg,#4c9ce5,#a5dcff);
+  box-shadow:0 0 6px #65b5ff;transition:width .25s ease}
+#combo-meter{display:none;align-items:center;gap:6px;min-width:118px;padding:4px 7px;
+  border:1px solid #816331;border-radius:3px;color:#ffe17b;
+  background:linear-gradient(180deg,rgba(74,54,24,.92),rgba(31,25,18,.96));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 2px 0 #090b10}
+#combo-meter.active{display:flex;animation:comboIn .18s ease-out}
+#combo-meter span{font-size:8px;letter-spacing:1px}
+#combo-meter b{font-size:12px}
+.combo-track{height:5px;flex:1;min-width:24px;overflow:hidden;border:1px solid #72562d;
+  background:#17151a;border-radius:2px}
+.combo-track i{display:block;width:100%;height:100%;background:linear-gradient(90deg,#ff9d42,#ffe17b);
+  box-shadow:0 0 6px #ffbd55;transition:width .12s linear}
+@keyframes comboIn{from{transform:translateY(-3px);opacity:0}to{transform:none;opacity:1}}
 .dot{width:9px;height:9px;border-radius:1px;display:inline-block}
 .dot.org{background:var(--org)} .dot.ano{background:var(--ano)} .dot.b3{background:var(--b3)}
 .spacer{flex:1}
 #mythic-track{padding:3px 8px;border:1px solid #7a2d43;background:#20121a;color:#ff8fa3;border-radius:3px}
 #mythic-track b{color:#ffd9e0}
 #hud button{font-family:inherit;font-size:10px;letter-spacing:1px;cursor:pointer;
-  background:#1d2740;color:#cfe0ff;border:2px solid #3b4a70;border-radius:3px;padding:5px 9px}
-#hud button:hover{background:#2a3a5e;color:#fff}
+  background:linear-gradient(180deg,#2c3b5a,#19233a);color:#cfe0ff;border:2px solid #526487;border-radius:3px;
+  padding:5px 9px;box-shadow:0 2px 0 #080b12,inset 0 1px 0 rgba(255,255,255,.12);
+  transition:filter .12s,transform .12s}
+#hud button:hover{filter:brightness(1.22);color:#fff;transform:translateY(-1px)}
 #prompt{position:absolute;left:50%;bottom:56px;transform:translateX(-50%);
   background:rgba(8,11,18,.92);border:2px solid #4a5a86;border-radius:3px;
   padding:5px 12px;font-size:11px;color:#dbe6ff;display:none;white-space:nowrap}
@@ -58,6 +84,30 @@ canvas{display:block;width:100%;height:100%;object-fit:contain;image-rendering:p
   border:1px solid #2b3550;border-radius:3px;padding:6px;cursor:pointer}
 .grid button:hover{background:#1f2b44;color:#fff}
 .grid button.here{border-color:#5f8ce0;color:#a9c9ff}
+
+.skill-summary{display:flex;align-items:center;gap:12px;margin-bottom:12px;padding:10px 12px;
+  border:1px solid #354766;border-radius:4px;
+  background:linear-gradient(110deg,rgba(49,75,112,.38),rgba(17,24,39,.72))}
+.skill-summary strong{font-size:15px;color:#ffe28a}
+.skill-summary span{font-size:10px;color:#b9c9e6}
+.skill-summary b{margin-left:auto;color:#8fe4a8;font-size:10px}
+.skill-card{display:flex;align-items:center;gap:12px;margin-bottom:8px;padding:12px;
+  border:1px solid #2e3b57;border-radius:4px;
+  background:linear-gradient(120deg,rgba(32,45,68,.94),rgba(15,21,34,.97));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 3px 0 #080b12}
+.skill-copy{flex:1}
+.skill-copy h3{margin:0 0 4px;color:#cfe0ff;font-size:12px}
+.skill-copy p{margin:0 0 5px;color:#9baac5;font-size:10px}
+.skill-copy small{color:#7f91b2;font-size:9px;letter-spacing:1px}
+.skill-ranks{display:flex;gap:4px;margin-top:5px}
+.skill-ranks i{width:24px;height:5px;border:1px solid #43516c;background:#101624}
+.skill-ranks i.filled{border-color:#7bbfff;background:linear-gradient(90deg,#498ed0,#a5dcff);
+  box-shadow:0 0 5px rgba(101,181,255,.45)}
+.skill-up{min-width:96px;padding:7px 8px;border:2px solid #527b65;border-radius:3px;
+  background:linear-gradient(180deg,#28563d,#173324);color:#a7f0bc;font:inherit;font-size:9px;
+  letter-spacing:.5px;cursor:pointer;box-shadow:0 2px 0 #080b12}
+.skill-up:hover:not(:disabled){filter:brightness(1.2);transform:translateY(-1px)}
+.skill-up:disabled{opacity:.42;cursor:not-allowed;border-color:#424a59;background:#222936;color:#9aa3b3}
 
 #gacha-result{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
 .card{border:2px solid #333;border-radius:4px;padding:8px;text-align:center;background:#0e1420;
@@ -97,4 +147,10 @@ canvas{display:block;width:100%;height:100%;object-fit:contain;image-rendering:p
   .res{gap:3px;padding:3px 4px}
   #hud button{font-size:8px;padding:4px 5px}
   #mythic-track{padding:3px 4px;font-size:9px}
+  #level-widget{min-width:76px;padding:3px 4px;gap:4px}
+  .level-xp{min-width:34px}
+  .level-xp small{font-size:7px}
+  #combo-meter{min-width:82px;padding:3px 4px;gap:3px}
+  #combo-meter span{font-size:7px}
+  #combo-meter b{font-size:10px}
 }

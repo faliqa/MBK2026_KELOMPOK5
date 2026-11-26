@@ -4,7 +4,7 @@ import { rnd, clamp } from '../core/util.js';
 import { PLAYER_STATE } from '../state.js';
 import { particles, floats } from './effects.js';
 import { buildFloor } from './tiles.js';
-import { getSprite, drawDecorSprite } from './sprite-cache.js';
+import { getSprite, drawDecorSprite, drawImageWithShadow } from './sprite-cache.js';
 import { findItem } from '../data/items.js';
 
 export function draw(ctx, map, canvas) {
@@ -51,7 +51,7 @@ export function draw(ctx, map, canvas) {
         if (!cv) return;
         const x = (machine.tx * T + T) * S;
         const y = (machine.ty * T + 2 * T) * S;
-        ctx.drawImage(cv,
+        drawImageWithShadow(ctx, cv,
           Math.round(x - (cv.width * S) / 2),
           Math.round(y - (cv.height * S) / 2),
           cv.width * S, cv.height * S);
@@ -114,7 +114,8 @@ export function draw(ctx, map, canvas) {
         ctx.ellipse(x, foot, 9 * S * 0.5, 4 * S * 0.5, 0, 0, 6.3);
         ctx.fill();
         ctx.globalAlpha = 1;
-        ctx.drawImage(cv, Math.round(x - cv.width * S / 2), Math.round(top), cv.width * S, cv.height * S);
+        drawImageWithShadow(ctx, cv,
+          Math.round(x - cv.width * S / 2), Math.round(top), cv.width * S, cv.height * S, 0.2);
         if (actor.name) {
           ctx.font = 'bold 10px ui-monospace,monospace';
           ctx.textAlign = 'center';
@@ -135,10 +136,10 @@ export function draw(ctx, map, canvas) {
     fn: () => {
       const bob = Math.sin(performance.now() / 300 + tr.bob) * 2;
       const cv = getSprite('trash_' + tr.type);
-      if (cv) ctx.drawImage(cv,
+      if (cv) drawImageWithShadow(ctx, cv,
         Math.round(tr.x * S - (cv.width * S) / 2),
         Math.round(tr.y * S - cv.height * S + bob * S),
-        cv.width * S, cv.height * S);
+        cv.width * S, cv.height * S, 0.22);
       ctx.globalAlpha = 0.2;
       ctx.fillStyle = '#000';
       ctx.beginPath();
@@ -177,10 +178,10 @@ export function draw(ctx, map, canvas) {
       ctx.ellipse(PLAYER_STATE.x * S, (PLAYER_STATE.y + 1) * S, 9 * S * 0.5, 4 * S * 0.5, 0, 0, 6.3);
       ctx.fill();
       ctx.globalAlpha = 1;
-      ctx.drawImage(cv,
+      drawImageWithShadow(ctx, cv,
         Math.round(PLAYER_STATE.x * S - (cv.width * S) / 2) + off * S,
         Math.round(PLAYER_STATE.y * S - cv.height * S),
-        cv.width * S, cv.height * S);
+        cv.width * S, cv.height * S, 0.25);
     }
   });
 
@@ -192,7 +193,8 @@ export function draw(ctx, map, canvas) {
         const mx = (PLAYER_STATE.x + Math.cos(t) * 34) * S;
         const my = (PLAYER_STATE.y - 52 + Math.sin(t * 1.7) * 7) * S;
         const cv = getSprite(collector.type === 'b3' ? 'mecha' : 'drone');
-        if (cv) ctx.drawImage(cv, mx - (cv.width * S) / 2, my, cv.width * S, cv.height * S);
+        if (cv) drawImageWithShadow(ctx, cv, mx - (cv.width * S) / 2, my,
+          cv.width * S, cv.height * S, 0.24);
       }
     });
   });
@@ -217,6 +219,15 @@ export function draw(ctx, map, canvas) {
   }
   ctx.globalAlpha = 1;
   ctx.textAlign = 'left';
+
+  const vignette = ctx.createRadialGradient(
+    canvas.width / 2, canvas.height / 2, Math.min(canvas.width, canvas.height) * 0.28,
+    canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) * 0.72
+  );
+  vignette.addColorStop(0, 'rgba(5, 8, 12, 0)');
+  vignette.addColorStop(1, 'rgba(5, 8, 12, 0.25)');
+  ctx.fillStyle = vignette;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   if (DEBUG.revealHitbox) {
     ctx.strokeStyle = '#ff0';

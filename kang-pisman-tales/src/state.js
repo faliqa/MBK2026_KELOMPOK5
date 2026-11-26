@@ -8,6 +8,13 @@ export const PLAYER_STATE = {
   inventory: [], decor: [], collectors: [],
   equipped: { speed: null, magnet: null, extra: null },
   genTimer: { organik: 0, anorganik: 0, b3: 0 },
+  combo: { count: 0, timeLeft: 0 },
+  progression: {
+    level: 1,
+    xp: 0,
+    skillPoints: 0,
+    skills: { speed: 0, magnet: 0, combo: 0 }
+  },
   missions: { starterWaste: { goal: 5, completed: false, rewarded: false } },
   stats: { picked: 0, pulls: 0 },
   won: false, freeRoam: false,
